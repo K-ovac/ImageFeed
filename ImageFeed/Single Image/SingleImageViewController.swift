@@ -29,6 +29,7 @@ final class SingleImageViewController: UIViewController {
         shareButton.setTitle("", for: .highlighted)
         shareButton.setTitle("", for: .selected)
         
+        
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
         
