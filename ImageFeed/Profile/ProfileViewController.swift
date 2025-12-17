@@ -22,7 +22,7 @@ final class ProfileViewController: UIViewController {
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.accessibilityIdentifier = "avatarImageView"
-        imageView.image = UIImage(named: "photo") ?? {
+        imageView.image = UIImage(named: "avatarPhoto") ?? {
             let image = UIImage(systemName: "person.crop.circle.fill")
             imageView.tintColor = .ypGray
             return image
@@ -61,7 +61,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "logout") ?? UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+        button.setImage(UIImage(named: "logoutButton") ?? UIImage(systemName: "rectangle.portrait.and.arrow.right"),
                         for: .normal)
         button.tintColor = .ypRed
         button.accessibilityIdentifier = "logoutButton"
