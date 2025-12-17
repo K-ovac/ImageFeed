@@ -165,7 +165,7 @@
                                     <constraint firstAttribute="width" constant="50" id="tow-uY-G6w"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="sharing"/>
+                                <buttonConfiguration key="configuration" style="plain" image="shareButton"/>
                                 <connections>
                                     <action selector="didTapShareButton:" destination="uWp-ZC-MX3" eventType="touchUpInside" id="zgW-z1-H5h"/>
                                 </connections>
@@ -212,7 +212,7 @@
         <image name="0" width="1600" height="1059"/>
         <image name="Backward" width="24" height="24"/>
         <image name="Like" width="44" height="44"/>
-        <image name="sharing" width="50" height="50"/>
+        <image name="shareButton" width="50" height="50"/>
         <image name="tab_editorial_active" width="45" height="45"/>
         <image name="tab_profile_active" width="45" height="45"/>
     </resources>
