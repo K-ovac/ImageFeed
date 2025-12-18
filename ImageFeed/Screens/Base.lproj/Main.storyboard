@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9TF-ek-4pf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kLY-KB-mSn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -124,11 +124,11 @@
             <objects>
                 <viewController id="tuf-pD-yk5" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PNn-P7-PIS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lZ-Pq-0QW" userLabel="loginButton">
-                                <rect key="frame" x="16" y="700" width="382" height="48"/>
+                                <rect key="frame" x="16" y="724" width="382" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="486-X7-Gun"/>
                                 </constraints>
@@ -140,7 +140,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-DE-NXo">
-                                <rect key="frame" x="177" y="417" width="60" height="60"/>
+                                <rect key="frame" x="177" y="418" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="9Qi-RC-cRu"/>
                                     <constraint firstAttribute="height" constant="60" id="Ogv-i8-HO2"/>
@@ -150,9 +150,9 @@
                         <viewLayoutGuide key="safeArea" id="aoL-9Q-BF2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="c5a-DE-NXo" firstAttribute="centerX" secondItem="aoL-9Q-BF2" secondAttribute="centerX" id="59c-NY-Wwz"/>
-                            <constraint firstItem="c5a-DE-NXo" firstAttribute="centerY" secondItem="aoL-9Q-BF2" secondAttribute="centerY" id="7gB-jg-JNv"/>
                             <constraint firstItem="aoL-9Q-BF2" firstAttribute="trailing" secondItem="0lZ-Pq-0QW" secondAttribute="trailing" constant="16" id="F73-ca-RA1"/>
+                            <constraint firstItem="c5a-DE-NXo" firstAttribute="centerX" secondItem="PNn-P7-PIS" secondAttribute="centerX" id="N8l-Jb-Ear"/>
+                            <constraint firstItem="c5a-DE-NXo" firstAttribute="centerY" secondItem="PNn-P7-PIS" secondAttribute="centerY" id="UNQ-Gx-igN"/>
                             <constraint firstItem="0lZ-Pq-0QW" firstAttribute="leading" secondItem="aoL-9Q-BF2" secondAttribute="leading" constant="16" id="VZd-ua-GpU"/>
                             <constraint firstItem="aoL-9Q-BF2" firstAttribute="bottom" secondItem="0lZ-Pq-0QW" secondAttribute="bottom" constant="90" id="riW-v0-Eb2"/>
                         </constraints>
@@ -172,11 +172,11 @@
             <objects>
                 <viewController id="CXN-ft-Dbc" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KnX-7M-Sf6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sg2-Gf-Yre">
-                                <rect key="frame" x="20" y="56" width="374" height="782"/>
+                                <rect key="frame" x="20" y="102" width="374" height="760"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -184,7 +184,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-Vv-3u8">
-                                <rect key="frame" x="0.0" y="56" width="414" height="4"/>
+                                <rect key="frame" x="0.0" y="102" width="414" height="4"/>
                             </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xW2-ky-bZ4"/>
@@ -323,7 +323,7 @@
                     </view>
                     <connections>
                         <outlet property="splashScreenLogo" destination="oSO-u0-dZe" id="RiX-rU-cL4"/>
-                        <segue destination="kMy-KX-MRM" kind="presentation" identifier="ShowAuthenticationScreen" id="ww6-W6-aCo"/>
+                        <segue destination="kMy-KX-MRM" kind="presentation" identifier="ShowAuthenticationScreen" modalPresentationStyle="fullScreen" id="ww6-W6-aCo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lia-WW-HMZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -336,7 +336,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kMy-KX-MRM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zlA-18-DJU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
