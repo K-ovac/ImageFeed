@@ -148,6 +148,18 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="Y5h-2X-yEL">
                                         <rect key="frame" x="28" y="76" width="1600" height="1059"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRi-7U-gSc" userLabel="Share Button">
+                                        <rect key="frame" x="182" y="795" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="BEY-IZ-2yd"/>
+                                            <constraint firstAttribute="width" constant="50" id="vzG-Gj-RRl"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="shareButton"/>
+                                        <connections>
+                                            <action selector="didTapShareButton:" destination="uWp-ZC-MX3" eventType="touchUpInside" id="zgW-z1-H5h"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="Y5h-2X-yEL" secondAttribute="trailing" constant="20" id="9g8-Ol-O2b"/>
@@ -158,18 +170,6 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="3Ao-Y2-jo5"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="f77-iQ-x62"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRi-7U-gSc" userLabel="Share Button">
-                                <rect key="frame" x="162.5" y="759" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="H7a-LM-ABs"/>
-                                    <constraint firstAttribute="width" constant="50" id="tow-uY-G6w"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="shareButton"/>
-                                <connections>
-                                    <action selector="didTapShareButton:" destination="uWp-ZC-MX3" eventType="touchUpInside" id="zgW-z1-H5h"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Kg-JU-BmO" userLabel="Back Button">
                                 <rect key="frame" x="8" y="57" width="48" height="48"/>
                                 <constraints>
@@ -188,9 +188,9 @@
                         <constraints>
                             <constraint firstItem="gKu-ya-QuB" firstAttribute="trailing" secondItem="UXd-QH-jvG" secondAttribute="trailing" id="7eC-YB-zXt"/>
                             <constraint firstItem="8Kg-JU-BmO" firstAttribute="leading" secondItem="UXd-QH-jvG" secondAttribute="leading" constant="8" id="BOT-Vc-cHZ"/>
-                            <constraint firstItem="tRi-7U-gSc" firstAttribute="top" secondItem="UXd-QH-jvG" secondAttribute="top" constant="711" id="Gu7-4E-Pws"/>
                             <constraint firstAttribute="bottom" secondItem="gKu-ya-QuB" secondAttribute="bottom" id="JnN-AZ-zrJ"/>
-                            <constraint firstItem="tRi-7U-gSc" firstAttribute="leading" secondItem="UXd-QH-jvG" secondAttribute="leading" constant="162.5" id="L0T-TA-1Wd"/>
+                            <constraint firstItem="tRi-7U-gSc" firstAttribute="centerX" secondItem="UXd-QH-jvG" secondAttribute="centerX" id="bEC-g8-9Mc"/>
+                            <constraint firstItem="UXd-QH-jvG" firstAttribute="bottom" secondItem="tRi-7U-gSc" secondAttribute="bottom" constant="17" id="bmc-HX-UKk"/>
                             <constraint firstItem="gKu-ya-QuB" firstAttribute="leading" secondItem="UXd-QH-jvG" secondAttribute="leading" id="btA-bL-Z8U"/>
                             <constraint firstItem="8Kg-JU-BmO" firstAttribute="top" secondItem="UXd-QH-jvG" secondAttribute="top" constant="9" id="mVQ-94-1aw"/>
                             <constraint firstItem="gKu-ya-QuB" firstAttribute="top" secondItem="rDK-3r-8Yw" secondAttribute="top" id="o07-I8-lM5"/>
@@ -205,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIQ-27-Jgr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1391" y="92"/>
+            <point key="canvasLocation" x="1389.8550724637682" y="91.741071428571431"/>
         </scene>
     </scenes>
     <resources>
