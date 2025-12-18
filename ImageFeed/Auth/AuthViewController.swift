@@ -26,8 +26,14 @@ final class AuthViewController: UIViewController {
         view.backgroundColor = .ypBlack
         
         loginButton.setTitle("Вход", for: .normal)
+        
+        loginButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        loginButton.titleLabel?.textAlignment = .center
+        
         loginButton.setTitleColor(.ypBlack, for: .normal)
+        loginButton.tintColor = .ypBlack
         loginButton.backgroundColor = .ypWhite
+        
         loginButton.layer.cornerRadius = 16
         loginButton.layer.masksToBounds = true
         
