@@ -107,7 +107,7 @@
                             <constraint firstAttribute="top" secondItem="0ZD-Gs-GgP" secondAttribute="top" id="l0f-Ng-QVT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="tab_editorial_active" id="5mM-lN-zfA"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="5mM-lN-zfA"/>
                     <navigationItem key="navigationItem" id="MU2-Ug-llf"/>
                     <connections>
                         <outlet property="tableView" destination="0ZD-Gs-GgP" id="a8a-Pc-Isw"/>
@@ -149,7 +149,7 @@
                                         <rect key="frame" x="28" y="76" width="1600" height="1059"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRi-7U-gSc" userLabel="Share Button">
-                                        <rect key="frame" x="182" y="795" width="50" height="50"/>
+                                        <rect key="frame" x="182" y="796" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="BEY-IZ-2yd"/>
                                             <constraint firstAttribute="width" constant="50" id="vzG-Gj-RRl"/>
