@@ -12,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="5SS-I1-bGv">
             <objects>
-                <tabBarController id="kLY-KB-mSn" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="kLY-KB-mSn" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Da4-Bt-PHC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -122,13 +122,13 @@
         <!--Auth View Controller-->
         <scene sceneID="YC4-sf-iHk">
             <objects>
-                <viewController id="tuf-pD-yk5" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" id="tuf-pD-yk5" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PNn-P7-PIS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lZ-Pq-0QW" userLabel="loginButton">
-                                <rect key="frame" x="16" y="724" width="382" height="48"/>
+                                <rect key="frame" x="16" y="690" width="382" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="486-X7-Gun"/>
                                 </constraints>
@@ -176,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sg2-Gf-Yre">
-                                <rect key="frame" x="20" y="102" width="374" height="760"/>
+                                <rect key="frame" x="20" y="150" width="374" height="678"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -184,7 +184,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-Vv-3u8">
-                                <rect key="frame" x="0.0" y="102" width="414" height="4"/>
+                                <rect key="frame" x="0.0" y="150" width="414" height="4"/>
                             </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xW2-ky-bZ4"/>
@@ -323,7 +323,6 @@
                     </view>
                     <connections>
                         <outlet property="splashScreenLogo" destination="oSO-u0-dZe" id="RiX-rU-cL4"/>
-                        <segue destination="kMy-KX-MRM" kind="presentation" identifier="ShowAuthenticationScreen" modalPresentationStyle="fullScreen" id="ww6-W6-aCo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lia-WW-HMZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -336,7 +335,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kMy-KX-MRM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zlA-18-DJU">
-                        <rect key="frame" x="0.0" y="48" width="414" height="54"/>
+                        <rect key="frame" x="0.0" y="96" width="414" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
