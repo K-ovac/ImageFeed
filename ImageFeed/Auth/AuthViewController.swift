@@ -23,6 +23,18 @@ final class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureAuthVC()
+        configureBackButton()
+    }
+    
+    private func configureBackButton() {
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "nav_back_button")
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
+    }
+    
+    private func configureAuthVC() {
         view.backgroundColor = .ypBlack
         
         loginButton.setTitle("Вход", for: .normal)
@@ -38,19 +50,10 @@ final class AuthViewController: UIViewController {
         loginButton.layer.masksToBounds = true
         
         authLogo.image = UIImage(named: "auth_screen_logo")
-        
-        configureBackButton()
-    }
-    
-    private func configureBackButton() {
-        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "nav_back_button")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
     
     @IBAction func loginButtonTapped() {
-        print("Пользователь нажал кнопку Входа")
+        debugPrint("Пользователь нажал кнопку Входа")
     }
 }
 
