@@ -9,23 +9,23 @@ import Foundation
 import Security
 
 final class OAuth2TokenStorage {
-    
+
     static let shared = OAuth2TokenStorage()
     private init() {
         debugPrint("OAuth2TokenStorage инициализирован")
     }
-    
+
     private enum KeychainConfig {
-        static let serviceName = "ru.yandex.practicum.ImageF8eed"
+        static let serviceName = "ru.yandex.practicum.ImageFeed"
         static let tokenAccount = "OAuth2Token"
         static let accessible = kSecAttrAccessibleAfterFirstUnlock
     }
-    
+
     var token: String? {
         get { retrieveToken() }
         set { updateToken(newValue) }
     }
-    
+
     private func baseQuery() -> [String: Any] {
         [
             kSecClass as String: kSecClassGenericPassword,
@@ -33,28 +33,32 @@ final class OAuth2TokenStorage {
             kSecAttrAccount as String: KeychainConfig.tokenAccount
         ]
     }
-    
+
     private func retrieveToken() -> String? {
         var query = baseQuery()
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnAttributes as String] = kCFBooleanTrue
         query[kSecReturnData as String] = kCFBooleanTrue
-        
+
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
-        
-        guard status == errSecSuccess,
-              let existingItem = item as? [String: Any],
-              let tokenData = existingItem[kSecValueData as String] as? Data,
-              let token = String(data: tokenData, encoding: .utf8) else {
+
+        guard status == errSecSuccess else {
             debugPrint("Токен не найден в Keychain. Статус: \(status.message)")
             return nil
         }
-        
+
+        guard let existingItem = item as? [String: Any],
+              let tokenData = existingItem[kSecValueData as String] as? Data,
+              let token = String(data: tokenData, encoding: .utf8) else {
+            debugPrint("Ошибка: не удалось извлечь токен из данных Keychain. Статус: \(status.message)")
+            return nil
+        }
+
         debugPrint("Токен успешно получен из Keychain")
         return token
     }
-    
+
     private func updateToken(_ newToken: String?) {
         if let token = newToken {
             saveToken(token)
@@ -62,19 +66,19 @@ final class OAuth2TokenStorage {
             removeToken()
         }
     }
-    
+
     private func saveToken(_ token: String) {
         removeToken()
-        
+
         guard let tokenData = token.data(using: .utf8) else {
-            debugPrint("Ошибка преобразования токена в Data")
+            debugPrint("Ошибка: не удалось преобразовать токен в Data")
             return
         }
-        
+
         var query = baseQuery()
         query[kSecValueData as String] = tokenData
         query[kSecAttrAccessible as String] = KeychainConfig.accessible
-        
+
         let status = SecItemAdd(query as CFDictionary, nil)
         if status == errSecSuccess {
             debugPrint("Токен успешно сохранен в Keychain")
@@ -82,11 +86,11 @@ final class OAuth2TokenStorage {
             debugPrint("Ошибка сохранения токена в Keychain: \(status.message)")
         }
     }
-    
+
     private func removeToken() {
         let query = baseQuery()
         let status = SecItemDelete(query as CFDictionary)
-        
+
         switch status {
         case errSecSuccess:
             debugPrint("Токен успешно удален из Keychain")
@@ -96,7 +100,7 @@ final class OAuth2TokenStorage {
             debugPrint("Ошибка удаления токена: \(status.message)")
         }
     }
-    
+
     func logKeychainStatus() {
         let status = token != nil ? "Токен существует" : "Токен отсутствует"
         debugPrint("Статус Keychain: \(status)")
