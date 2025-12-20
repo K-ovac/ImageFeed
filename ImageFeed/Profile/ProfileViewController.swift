@@ -26,8 +26,9 @@ final class ProfileViewController: UIViewController {
         imageView.accessibilityIdentifier = "avatarImageView"
         imageView.image = UIImage(named: "avatarPhoto") ?? UIImage(systemName: "person.crop.circle.fill")
         imageView.tintColor = .ypGray
-        imageView.layer.cornerRadius = 61
+        imageView.layer.cornerRadius = UIConstants.avatarSize / 2
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -83,15 +84,17 @@ final class ProfileViewController: UIViewController {
     
     private func updateAvatarFromURL(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
+        let processor = DownsamplingImageProcessor(size: CGSize(width: UIConstants.avatarSize * 2,
+                                                                height: UIConstants.avatarSize * 2))
+            |> RoundCornerImageProcessor(cornerRadius: UIConstants.avatarSize / 2)
         
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 122, height: 122)) // 2 * 61
-            |> RoundCornerImageProcessor(cornerRadius: 61)
         avatarImageView.kf.setImage(
             with: url,
             placeholder: UIImage(systemName: "person.crop.circle.fill"),
-            options: [.processor(processor), .scaleFactor(UIScreen.main.scale), .cacheOriginalImage]
+            options: [.processor(processor),
+                      .scaleFactor(UIScreen.main.scale),
+                      .cacheOriginalImage]
         )
-        avatarImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.crop.circle.fill"), options: [.processor(processor), .scaleFactor(UIScreen.main.scale), .cacheOriginalImage])
     }
     
     private func updateProfileDetails(with profile: Profile) {

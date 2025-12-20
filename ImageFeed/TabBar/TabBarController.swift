@@ -24,8 +24,10 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        guard let editorialImage = UIImage(named: "tab_editorial_active"),
-              let profileImage = UIImage(named: "tab_profile_active") else {
+        guard let editorialActive = UIImage(named: "tab_editorial_active"),
+              let editorialInactive = UIImage(named: "tab_editorial_no_active"),
+              let profileActive = UIImage(named: "tab_profile_active"),
+              let profileInactive = UIImage(named: "tab_profile_no_active") else {
             print("Missing tab bar images. Проверьте Assets.")
             return
         }
@@ -33,18 +35,23 @@ final class TabBarController: UITabBarController {
         let imagesListVC = ImagesListViewController()
         let profileVC = ProfileViewController()
         
-        imagesListVC.tabBarItem = UITabBarItem(
+        let editorialTabBarItem = UITabBarItem(
             title: nil,
-            image: editorialImage,
-            tag: 0
+            image: editorialInactive,
+            selectedImage: editorialActive
         )
+        editorialTabBarItem.tag = 0
+        imagesListVC.tabBarItem = editorialTabBarItem
         
-        profileVC.tabBarItem = UITabBarItem(
+        let profileTabBarItem = UITabBarItem(
             title: nil,
-            image: profileImage,
-            tag: 1
+            image: profileInactive,
+            selectedImage: profileActive
         )
+        profileTabBarItem.tag = 1
+        profileVC.tabBarItem = profileTabBarItem
         
         viewControllers = [imagesListVC, profileVC]
     }
+
 }
