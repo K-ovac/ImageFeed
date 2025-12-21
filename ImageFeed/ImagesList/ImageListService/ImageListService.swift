@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 final class ImageListService {
     
@@ -21,6 +20,8 @@ final class ImageListService {
     private var lastLoadedPage: Int?
     private var currentTask: URLSessionTask?
     private let perPage = 10
+    
+    private let jsonDecoder = JSONDecoder()
     
     private init() {}
     
@@ -39,7 +40,7 @@ final class ImageListService {
         }
         
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
-            guard let self = self else { return }
+            guard let self else { return }
             
             switch result {
             case .success(let results):
@@ -121,7 +122,7 @@ final class ImageListService {
             struct LikeResponse: Decodable { let photo: PhotoResult }
             
             do {
-                let likeResponse = try JSONDecoder().decode(LikeResponse.self, from: data)
+                let likeResponse = try self.jsonDecoder.decode(LikeResponse.self, from: data)
                 guard let updatedPhoto = self.makePhoto(from: likeResponse.photo) else {
                     let error = NSError(domain: "InvalidResponse", code: 1)
                     print("[ImageListService.changeLike]: InvalidResponse, photoId=\(photoId), isLike=\(isLike), error=\(error), data=\(String(data: data, encoding: .utf8) ?? "")")
@@ -163,6 +164,12 @@ final class ImageListService {
 }
 
 private extension ImageListService {
+    
+    private static let iso8601DateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        return formatter
+    }()
+    
     func makePhotosRequest(page: Int, perPage: Int, token: String) -> URLRequest? {
         guard var components = URLComponents(string: "https://api.unsplash.com/photos") else { return nil }
         components.queryItems = [
@@ -190,7 +197,7 @@ private extension ImageListService {
             thumb: result.urls.thumb
         )
         
-        let createdAtDate = result.created_at.flatMap { ISO8601DateFormatter().date(from: $0) }
+        let createdAtDate = result.created_at.flatMap { Self.iso8601DateFormatter.date(from: $0) }
         
         return Photo(
             id: result.id,
@@ -202,10 +209,5 @@ private extension ImageListService {
             urls: urls,
             isLiked: result.liked_by_user
         )
-    }
-    
-    func parseDate(from string: String?) -> Date? {
-        guard let string = string else { return nil }
-        return ISO8601DateFormatter().date(from: string)
     }
 }

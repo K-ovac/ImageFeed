@@ -133,21 +133,41 @@ final class ProfileViewController: UIViewController {
     }
     
     private func applyShimmers() {
-        avatarShimmer = GradientLoadView.createShimmerView(frame: avatarImageView.bounds, cornerRadius: UIConstants.avatarSize / 2)
-        avatarImageView.addSubview(avatarShimmer!)
-        avatarShimmer?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        nameShimmer = GradientLoadView.createShimmerView(frame: nameLabel.bounds, cornerRadius: 4)
-        nameLabel.addSubview(nameShimmer!)
-        nameShimmer?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        loginShimmer = GradientLoadView.createShimmerView(frame: loginNameLabel.bounds, cornerRadius: 4)
-        loginNameLabel.addSubview(loginShimmer!)
-        loginShimmer?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        descriptionShimmer = GradientLoadView.createShimmerView(frame: descriptionLabel.bounds, cornerRadius: 4)
-        descriptionLabel.addSubview(descriptionShimmer!)
-        descriptionShimmer?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        avatarShimmer = GradientLoadView.createShimmerView(
+            frame: avatarImageView.bounds,
+            cornerRadius: UIConstants.avatarSize / 2
+        )
+        if let avatarShimmer = avatarShimmer {
+            avatarImageView.addSubview(avatarShimmer)
+            avatarShimmer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
+
+        nameShimmer = GradientLoadView.createShimmerView(
+            frame: nameLabel.bounds,
+            cornerRadius: 4
+        )
+        if let nameShimmer = nameShimmer {
+            nameLabel.addSubview(nameShimmer)
+            nameShimmer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
+
+        loginShimmer = GradientLoadView.createShimmerView(
+            frame: loginNameLabel.bounds,
+            cornerRadius: 4
+        )
+        if let loginShimmer = loginShimmer {
+            loginNameLabel.addSubview(loginShimmer)
+            loginShimmer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
+
+        descriptionShimmer = GradientLoadView.createShimmerView(
+            frame: descriptionLabel.bounds,
+            cornerRadius: 4
+        )
+        if let descriptionShimmer = descriptionShimmer {
+            descriptionLabel.addSubview(descriptionShimmer)
+            descriptionShimmer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
     }
     
     private func removeShimmers() {
