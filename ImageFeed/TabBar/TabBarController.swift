@@ -9,11 +9,15 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupTabBar()
     }
+    
+    // MARK: - Setup
     
     private func setupView() {
         view.backgroundColor = UIColor.ypBlack
