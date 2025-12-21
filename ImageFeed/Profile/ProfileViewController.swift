@@ -62,6 +62,10 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProfileUI()
@@ -80,13 +84,20 @@ final class ProfileViewController: UIViewController {
                 }
             }
         }
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveAvatarUpdate),
+            name: ProfileImageService.didChangeNotification,
+            object: nil
+        )
     }
     
     private func updateAvatarFromURL(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
         let processor = DownsamplingImageProcessor(size: CGSize(width: UIConstants.avatarSize * 2,
                                                                 height: UIConstants.avatarSize * 2))
-            |> RoundCornerImageProcessor(cornerRadius: UIConstants.avatarSize / 2)
+        |> RoundCornerImageProcessor(cornerRadius: UIConstants.avatarSize / 2)
         
         avatarImageView.kf.setImage(
             with: url,
@@ -131,6 +142,11 @@ final class ProfileViewController: UIViewController {
             logoutButton.widthAnchor.constraint(equalToConstant: UIConstants.buttonSize),
             logoutButton.heightAnchor.constraint(equalTo: logoutButton.widthAnchor)
         ])
+    }
+    
+    @objc private func didReceiveAvatarUpdate(_ notification: Notification) {
+        guard let urlString = notification.userInfo?["URL"] as? String else { return }
+        updateAvatarFromURL(urlString)
     }
     
     @objc private func didTapLogoutButton() { }

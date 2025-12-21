@@ -6,7 +6,6 @@
 //
 import UIKit
 
-// MARK: - Constants
 private enum ImagesListConstants {
     static let defaultCellHeight: CGFloat = 200
     static let tableViewContentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
@@ -22,15 +21,12 @@ private enum ImagesListConstants {
     }()
 }
 
-// MARK: - ImagesListViewController
 final class ImagesListViewController: UIViewController {
 
-    // MARK: - Properties
     private let currentDate = Date()
     private var photosName = [String]()
     private var imageSizes = [CGSize]()
 
-    // MARK: - UI Elements
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ImagesListCell.self, forCellReuseIdentifier: ImagesListCell.reuseIdentifier)
@@ -44,14 +40,12 @@ final class ImagesListViewController: UIViewController {
         return tableView
     }()
 
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         loadPhotosAndSizes()
     }
 
-    // MARK: - Setup Methods
     private func setupUI() {
         view.backgroundColor = .ypBlack
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +61,7 @@ final class ImagesListViewController: UIViewController {
 
     private func loadPhotosAndSizes() {
         photosName = (0..<ImagesListConstants.photosCount).compactMap { index in
-            let name = "\(index)" // твои имена изображений
+            let name = "\(index)"
             guard let image = UIImage(named: name) else {
                 print("Missing image: \(name)")
                 return nil
@@ -111,7 +105,6 @@ final class ImagesListViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
 extension ImagesListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,7 +124,6 @@ extension ImagesListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

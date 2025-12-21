@@ -16,7 +16,7 @@ final class ProfileImageService {
     private var task: URLSessionTask?
     private let urlSession = URLSession.shared
     private(set) var avatarURL: String?
-
+    
     func fetchProfileImageURL(
         username: String,
         _ completion: @escaping (Result<String, Error>) -> Void
@@ -55,6 +55,7 @@ final class ProfileImageService {
                 completion(.success(urlString))
                 
             case .failure(let error):
+                print("[ProfileImageService.fetchProfileImageURL]: error=\(error), username=\(username)")
                 completion(.failure(error))
             }
             self?.task = nil

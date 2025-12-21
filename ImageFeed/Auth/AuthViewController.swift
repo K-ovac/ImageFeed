@@ -124,17 +124,18 @@ extension AuthViewController: WebViewViewControllerDelegate {
     }
     
     private func handleAuthFailure(error: Error) {
-        self.showAuthError(error)
-        self.dismiss(animated: true)
+        showAuthError(error)
     }
-    
+
     private func showAuthError(_ error: Error) {
-        let alert = UIAlertController(title: "Что-то пошло не так",
-                                      message: "Не удалось войти в систему",
-                                      preferredStyle: .alert
+        let alert = UIAlertController(
+            title: "Что-то пошло не так",
+            message: "Не удалось войти в систему",
+            preferredStyle: .alert
         )
         
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        
         present(alert, animated: true)
     }
 }

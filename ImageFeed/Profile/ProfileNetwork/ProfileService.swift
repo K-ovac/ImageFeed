@@ -43,7 +43,7 @@ final class ProfileService {
                 completion(.success(profile))
                 
             case .failure(let error):
-                print("[ProfileService.fetchProfile]: \(error)")
+                print("[ProfileService.fetchProfile]: \(error) - token=\(token)")
                 completion(.failure(error))
             }
             
