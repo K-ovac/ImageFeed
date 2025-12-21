@@ -49,11 +49,6 @@ final class OAuth2Service {
     ) {
         assert(Thread.isMainThread)
         
-        guard lastCode != code else {
-            completion(.failure(OAuthServiceError.invalidRequest))
-            return
-        }
-        
         task?.cancel()
         lastCode = code
         
@@ -62,12 +57,17 @@ final class OAuth2Service {
             return
         }
         
-        let task = session.objectTask(for: request) { [weak self]
-            (result: Result<OAuthTokenResponse, Error>) in
-            
+        let task = session.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponse, Error>) in
+            guard let self = self else { return }
+
+            guard self.lastCode == code else {
+                print("[OAuth2Service.fetchOAuthToken]: устаревший результат для code=\(code), игнорируем")
+                return
+            }
+
             defer {
-                self?.task = nil
-                self?.lastCode = nil
+                self.task = nil
+                self.lastCode = nil
             }
             
             switch result {
@@ -85,4 +85,5 @@ final class OAuth2Service {
         self.task = task
         task.resume()
     }
+
 }

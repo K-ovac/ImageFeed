@@ -5,7 +5,6 @@
 //  Created by Максим Лозебной on 05.10.2025.
 //
 
-import Foundation
 import UIKit
 
 private enum ImagesListCellConstants {

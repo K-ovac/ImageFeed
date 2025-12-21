@@ -6,13 +6,16 @@
 //
 
 import UIKit
-import Foundation
 import ProgressHUD
 
 final class AuthViewController: UIViewController {
     
+    // MARK: - Dependencies
+    
     weak var delegate: AuthViewControllerDelegate?
     private let oauth2Service = OAuth2Service.shared
+    
+    // MARK: - UI
     
     private let authLogo: UIImageView = {
         let imageView = UIImageView()
@@ -34,11 +37,15 @@ final class AuthViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureAuthVC()
     }
+    
+    // MARK: - Setup
     
     private func configureAuthVC() {
         view.backgroundColor = .ypBlack
@@ -61,6 +68,8 @@ final class AuthViewController: UIViewController {
         ])
     }
     
+    // MARK: - Actions
+    
     @objc private func loginButtonTapped() {
         debugPrint("Пользователь нажал кнопку Входа")
         showWebViewController()
@@ -74,6 +83,8 @@ final class AuthViewController: UIViewController {
         present(navVC, animated: true)
     }
 }
+
+// MARK: - WebViewViewControllerDelegate
 
 extension AuthViewController: WebViewViewControllerDelegate {
     
