@@ -11,6 +11,8 @@ final class SplashViewController: UIViewController {
 
     private let storage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared
+    
+    // MARK: - UI
 
     private let splashLogo: UIImageView = {
         let imageView = UIImageView()
@@ -19,6 +21,8 @@ final class SplashViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,8 @@ final class SplashViewController: UIViewController {
         super.viewDidAppear(animated)
         checkTokenAndNavigate()
     }
+    
+    // MARK: - Setup
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -93,6 +99,8 @@ final class SplashViewController: UIViewController {
         .lightContent
     }
 }
+
+// MARK: - AuthViewControllerDelegate
 
 extension SplashViewController: AuthViewControllerDelegate {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithToken token: String) {

@@ -6,15 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 private enum ImagesListCellConstants {
     static let cornerRadius: CGFloat = 16
-    static let imageInsets = UIEdgeInsets(top: 4, left: 16,
-                                          bottom: 4, right: 16)
+    static let imageInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
     static let likeButtonSize: CGSize = CGSize(width: 42, height: 42)
-    static let dateLabelInsets = UIEdgeInsets(top: 0, left: 8,
-                                              bottom: 8, right: 0)
-    static let gradientHeight: CGFloat = 30
+    static let dateLabelInsets = UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 0)
     static let dateLabelFontSize: CGFloat = 13
     
     enum Images {
@@ -24,7 +22,11 @@ private enum ImagesListCellConstants {
 }
 
 final class ImagesListCell: UITableViewCell {
+    
+    weak var delegate: ImagesListCellDelegate?
     static let reuseIdentifier = "ImagesListCell"
+    
+    // MARK: - UI
     
     lazy var cellImage: UIImageView = {
         let imageView = UIImageView()
@@ -45,37 +47,40 @@ final class ImagesListCell: UITableViewCell {
         let button = UIButton()
         button.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
         button.accessibilityIdentifier = "likeButton"
+        button.isHidden = true
         return button
     }()
     
-    private var gradientLayer: CAGradientLayer?
+    private var shimmerView: GradientLoadView?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCellUI()
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
-        print("init(coder:) is not implemented - using programmatic layout")
-        return nil
+        super.init(coder: coder)
+        setupCellUI()
+        setupConstraints()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updateGradientFrame()
-    }
+    // MARK: - Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
         cellImage.image = nil
         dateLabel.text = nil
+        likeButton.isHidden = true
+        shimmerView?.removeFromSuperview()
+        shimmerView = nil
     }
+    
+    // MARK: - Setup
     
     private func setupCellUI() {
         backgroundColor = .ypBlack
         selectionStyle = .none
-        
         [cellImage, likeButton, dateLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
@@ -110,28 +115,27 @@ final class ImagesListCell: UITableViewCell {
         likeButton.setImage(UIImage(named: imageName), for: .normal)
     }
     
-    func setupGradient() {
-        gradientLayer?.removeFromSuperlayer()
+    func showLoadCell() {
+        likeButton.isHidden = true
         
-        let gradient = CAGradientLayer()
-        gradient.colors = [
-            UIColor.clear.cgColor,
-            UIColor.black.withAlphaComponent(0.7).cgColor
-        ]
-        gradient.locations = [0, 1]
-        gradientLayer = gradient
-        updateGradientFrame()
-        cellImage.layer.insertSublayer(gradient, at: 0)
+        shimmerView?.removeFromSuperview()
+        
+        let shimmer = GradientLoadView.createShimmerView(frame: cellImage.bounds,
+                                                     cornerRadius: ImagesListCellConstants.cornerRadius)
+        cellImage.addSubview(shimmer)
+        shimmer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        shimmerView = shimmer
     }
     
-    private func updateGradientFrame() {
-        gradientLayer?.frame = CGRect(
-            x: 0,
-            y: cellImage.bounds.height - ImagesListCellConstants.gradientHeight,
-            width: cellImage.bounds.width,
-            height: ImagesListCellConstants.gradientHeight
-        )
+    func hideLoadCell() {
+        shimmerView?.removeFromSuperview()
+        shimmerView = nil
+        likeButton.isHidden = false
     }
     
-    @objc private func didTapLikeButton() { }
+    // MARK: - Actions
+    
+    @objc private func didTapLikeButton() {
+        delegate?.imageListCellDidTapLike(self)
+    }
 }
