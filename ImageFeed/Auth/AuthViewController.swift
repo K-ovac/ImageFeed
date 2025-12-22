@@ -41,7 +41,6 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureAuthVC()
     }
     
@@ -78,6 +77,13 @@ final class AuthViewController: UIViewController {
     private func showWebViewController() {
         let webVC = WebViewViewController()
         webVC.delegate = self
+        
+        // Создаём AuthHelper и WebViewPresenter для передачи в WebViewViewController
+        let authHelper = AuthHelper()
+        let webViewPresenter = WebViewPresenter(authHelper: authHelper)
+        webVC.presenter = webViewPresenter
+        webViewPresenter.view = webVC
+        
         let navVC = UINavigationController(rootViewController: webVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
