@@ -17,15 +17,15 @@ final class ImageFeedUITests: XCTestCase {
         static let likeButton = "likeButton"
         static let backButton = "backButton"
         static let logoutButton = "logoutButton"
-        static let profileName = "usernameLabel"
+        static let profileName = "nameLabel"
         static let profileLogin = "loginNameLabel"
     }
     
     private enum TestData {
-        static let email = "email@example.com"
-        static let password = "password"
-        static let userName = ""
-        static let userLogin = ""
+        static let email = "your_email"
+        static let password = "your_password"
+        static let userName = "your_username"
+        static let userLogin = "your_login"
     }
     
     override func setUpWithError() throws {
@@ -49,18 +49,25 @@ final class ImageFeedUITests: XCTestCase {
         authButton.tap()
         
         let webView = app.webViews[Identifiers.webView]
-        waitForElement(webView)
+        waitForElement(webView, timeout: 15)
         
         let emailField = webView.textFields.element
         waitForElement(emailField)
         emailField.tap()
-        emailField.typeText(TestData.email)
+        
+        UIPasteboard.general.string = TestData.email
+        emailField.press(forDuration: 1.5)
+        if app.menuItems["Paste"].waitForExistence(timeout: 3) {
+            app.menuItems["Paste"].tap()
+        } else {
+            emailField.typeText(TestData.email)
+        }
         
         let passwordField = webView.secureTextFields.element
         waitForElement(passwordField)
         passwordField.tap()
         UIPasteboard.general.string = TestData.password
-        passwordField.doubleTap()
+        passwordField.press(forDuration: 1.5)
         if app.menuItems["Paste"].waitForExistence(timeout: 3) {
             app.menuItems["Paste"].tap()
         } else {
@@ -78,6 +85,7 @@ final class ImageFeedUITests: XCTestCase {
         let firstCell = app.tables.cells.element(boundBy: 0)
         waitForElement(firstCell)
     }
+
     
     @MainActor
     func testFeed() throws {

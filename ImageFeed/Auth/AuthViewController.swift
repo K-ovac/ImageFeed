@@ -34,6 +34,7 @@ final class AuthViewController: UIViewController {
         button.layer.cornerRadius = 16
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "loginButton"
         return button
     }()
     

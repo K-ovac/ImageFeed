@@ -44,6 +44,7 @@ final class SingleImageViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "fullScreennImage"
         return imageView
     }()
     
@@ -52,6 +53,7 @@ final class SingleImageViewController: UIViewController {
         button.setImage(UIImage(named: SingleImageConstants.Images.backward), for: .normal)
         button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "backButton"
         return button
     }()
     
@@ -60,6 +62,7 @@ final class SingleImageViewController: UIViewController {
         button.setImage(UIImage(named: SingleImageConstants.Images.sharing), for: .normal)
         button.addTarget(self, action: #selector(didTapShareButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "shareButton"
         return button
     }()
     

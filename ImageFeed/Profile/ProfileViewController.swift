@@ -32,6 +32,7 @@ final class ProfileViewController: UIViewController {
         imageView.layer.cornerRadius = UIConstants.avatarSize / 2
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.accessibilityIdentifier = "avatarImageView"
         return imageView
     }()
     
@@ -39,6 +40,7 @@ final class ProfileViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: UIConstants.nameFontSize, weight: .bold)
         label.textColor = .ypWhite
+        label.accessibilityIdentifier = "nameLabel"
         return label
     }()
     
@@ -46,6 +48,7 @@ final class ProfileViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: UIConstants.secondaryFontSize)
         label.textColor = .ypGray
+        label.accessibilityIdentifier = "loginNameLabel"
         return label
     }()
     
@@ -54,6 +57,7 @@ final class ProfileViewController: UIViewController {
         label.font = .systemFont(ofSize: UIConstants.secondaryFontSize)
         label.textColor = .ypWhite
         label.numberOfLines = 0
+        label.accessibilityIdentifier = "descriptionLabel"
         return label
     }()
     
@@ -62,6 +66,7 @@ final class ProfileViewController: UIViewController {
         button.setImage(UIImage(named: "logoutButton") ?? UIImage(systemName: "rectangle.portrait.and.arrow.right"), for: .normal)
         button.tintColor = .ypRed
         button.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        button.accessibilityIdentifier = "logoutButton"
         return button
     }()
     
